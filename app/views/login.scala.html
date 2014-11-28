@@ -1,0 +1,38 @@
+@* login Template File *@
+@(formulario: Form[model.UserInet], repetir: Boolean = false)(implicit request: RequestHeader)
+
+
+@import helper._
+
+
+@main("Login") {
+	
+	<h2 class="text-muted">Ingresa al sistema</h2>	
+	@if(repetir){
+		<div class="alert alert-warning" role="alert">Error con el login. Intenta de nuevo.</div>		
+	}
+	
+	
+	<div class="row">
+	  <div class="col-md-offset-1 col-md-5">
+	   <h3 class="text-left text-info">Login</h3>
+	   @helper.form(routes.Login.loging()) {
+        @CSRF.formField
+			  @helper.inputText(formulario("name"),'_label ->"Username")
+			  @helper.inputPassword(formulario("password"),'_label ->"clave")
+			  <input type="submit" value="Inicia sesión">
+			}
+	   
+    </div>
+	
+    <div class="col-md-offset-1 col-md-5">
+      <h3 class="text-left text-info">Registrate</h3>
+      @helper.form(routes.Login.register()) {
+        @CSRF.formField
+        @helper.inputText(formulario("name"),'_label ->"Username")
+        @helper.inputPassword(formulario("password"),'_label ->"clave")
+        <input type="submit" value="Crear nuevo usuario">
+      }
+    </div>
+  </div>
+}

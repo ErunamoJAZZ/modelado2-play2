@@ -1,0 +1,24 @@
+Proyecto, Taller de modelado 2
+==============================
+
+Proyecto de **Taller de Modelado 2**, materia del posgrado en Ingeniería de 
+Sistemas de la Universidad Nacional de Colombia, Sede Medellín.
+
+En el curso se analizaron diferentes frameworks web, y con cada uno se creó una 
+aplicación que permitiera subir fotos, dejando que el usuario creara albumes 
+para ellas, y si se quería, poder hacer las fotos privadas.
+
+El objetivo era ver cómo era la aproximación de cada uno de los frameworks al
+solucinar el mismo problema.
+
+
+
+LICENCE
+-------
+
+Todos los derechos reservados <C. Daniel Sanchez R.>. 
+* Se prohibe el uso de este código con fines comerciales.
+* Se permite usarlo para cualquier fin personal, educativo, etc.
+* Se permite la modificación del código.
+* Modificaciones de más del 50% en la lógica del programa, no son 
+  cobijadas por esta licencia.

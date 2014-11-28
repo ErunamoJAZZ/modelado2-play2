@@ -1,0 +1,17 @@
+@* login Template File *@
+@(p: model.Picture, isPrivate: Boolean)
+
+@main("Foto") {
+	
+<a href="javascript:history.go(-1)">Ir Atrás </a>
+	
+	<h3>Detalle de la imágen</h3>
+	
+	<ul>
+		<li>id: @p.id</li>
+		<li>nombre: @p.description</li>
+		<li>last update: @p.last_edition</li>
+		<li>Privada: @isPrivate</li>	
+	</ul>
+	<img src="@routes.Assets.at("images/uploaded/"+p.description)" width="90%" />
+}

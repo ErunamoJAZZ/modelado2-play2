@@ -1,0 +1,37 @@
+@* login Template File *@
+@import model._
+@(nombreUsuario: String, listaUsuarios: List[(Int, String)])
+
+@main("Lista de usuarios") {
+	
+	
+	@nav_component("usuarios")
+	
+	
+  <h2>Hola <em>@nombreUsuario</em></h2>
+	
+	<h3>Lista de usuarios</h3>
+	
+	@if(listaUsuarios.isEmpty){
+		<div class="alert alert-info" role="alert">No hay usuarios.</div>
+	}else{
+    <table class="table table-hover">
+    <tr> <th>#</th> <th>Nombre de usuario</th> <th>Albums</th> </tr>
+    
+			@for((id, name) <- listaUsuarios) {
+			  
+			  <tr @if(name == nombreUsuario) {class="success"} >
+				  <td>@id</td>
+				  <td>@name </td> 
+				  <td><a href=@routes.Albumes.albumesDeUsuario(id)>ir a albumes.</a></td> 
+			  </tr>
+			}
+		</table>
+	}
+	
+	
+	
+	
+
+  
+}

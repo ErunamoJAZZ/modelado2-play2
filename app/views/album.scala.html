@@ -1,0 +1,49 @@
+@* login Template File *@
+@(uname: String, isOwner: Boolean, listPic: List[model.Picture], 
+  id_album: Int, privadas: List[model.Picture]=Nil)(implicit request: RequestHeader)
+@import helper._
+
+@main("Fotos de un Album") {
+	
+	<a href="javascript:history.go(-1)">Ir Atrás </a>
+	
+	@if(isOwner){
+    <div class="panel panel-default">
+    <h3>Nuevo Album</h3>
+      <div class="panel-body">
+      
+        @helper.form(action = routes.Albumes.nuevaFoto(id_album), 'enctype -> "multipart/form-data") {
+          @CSRF.formField
+          <input type="checkbox" name="privado"> Privado </input>
+			    <input type="file" name="picture">
+			    <input type="submit" value="Eviar imágen :D">
+			  }
+      </div>
+    </div>
+  }
+	
+	
+	
+	
+<h3>Fotos de un Album</h3>	
+	
+	@if(listPic.isEmpty){
+      <div class="alert alert-info" role="alert">No hay Fotos</div>
+    }else{
+      <table class="table table-hover">
+      <tr> <th>#</th> <th>Nombre </th> <th>Miniatura</th> <th>ultima modificación</th> </tr>
+      
+        @for(al <- listPic) {
+          
+          <tr >
+            <td>@al.id</td>
+            <td>@al.description  </td> 
+            <td><a href="@routes.Albumes.verImagen(al.id.get)"><img src="@routes.Assets.at("images/uploaded/"+al.description)" width="150" /></a></td>
+            <td>@al.last_edition  </td>
+          </tr>
+        }
+      </table>
+    }
+	
+	
+}

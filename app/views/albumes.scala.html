@@ -1,0 +1,49 @@
+@* login Template File *@
+@import model._ 
+@import helper._
+@( listaAlbumes: List[Album], isOwner: Boolean=false, 
+    user: User= User(Some(0),"guest",""), 
+    formulario: Form[(String)] =null )(implicit request: RequestHeader)
+
+
+
+@main("Lista de Albumes") {
+	
+	@nav_component({if(isOwner)"mios" else "albumes"})
+	
+	@if(isOwner){
+	  <div class="panel panel-default">
+	  <h3>Nuevo Album</h3>
+		  <div class="panel-body">
+		    @form(routes.Albumes.nuevoAlbum()){
+		      @CSRF.formField
+		      @helper.inputText(formulario("name")) 
+		      <input type="submit" value="Crea nuevo album">
+		    }
+	    </div>
+    </div>
+	}
+    
+	
+		<h3>Lista de Albumes de "@user.name"</h3>
+		
+		
+		@if(listaAlbumes.isEmpty){
+	    <div class="alert alert-info" role="alert">No hay Albumes.</div>
+	  }else{
+	    <table class="table table-hover">
+	    <tr> <th>#</th> <th>Nombre del album</th> <th>Link</th> <th>fecha de creación</th> </tr>
+	    
+	      @for(al <- listaAlbumes) {
+	        
+	        <tr >
+	          <td>@al.id</td>
+	          <td>@al.name  </td> 
+	          <td><a href=@routes.Albumes.albumDeFotos(user.name, al.id.getOrElse(0))>ir al album.</a></td>
+	          <td>@al.creation  </td>
+	        </tr>
+	      }
+	    </table>
+	  }
+	
+}

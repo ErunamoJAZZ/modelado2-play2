@@ -1,0 +1,31 @@
+@* nav_component Template File *@
+@(param: String,id_user: Int = -1, album_name: String = "")
+
+
+    <ul class="nav nav-tabs">
+		  <li role="presentation" @{if(param == "usuarios")"class=active" else ""}>
+		    <a href=@{if(param == "usuarios")"#" else routes.Albumes.usuariosTodos()}>Usuarios</a>
+		  </li>
+		  @if(param != "usuarios"){
+		    @if(param == "mios"){
+		      <li role="presentation" @{if(param == "mios")"class=active" else ""}>
+		        <a href=@{if(param == "mios" || id_user == -1 )"#" else routes.Albumes.albumesDeUsuario(id_user)}>Mis Albumes</a>
+		      </li>
+		    } else {
+		      <li role="presentation" @{if(param == "albumes")"class=active" else ""}>
+		        <a href=@{if(param == "albumes" || id_user == -1 )"#" else routes.Albumes.albumesDeUsuario(id_user)}>Albumes</a>
+		      </li>
+		    }
+		  }
+		  
+		  @if(!album_name.isEmpty() && id_user > 0){
+		    <li role="presentation" class="active" >
+          <a href="#">Album: <em>@album_name</em></a>
+        </li>
+		  }
+		  
+		  <li role="presentation" >
+            <a href=@routes.Login.logout>Cerrar Sesión</a>
+          </li>
+		</ul>
+

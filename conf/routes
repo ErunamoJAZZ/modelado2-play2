@@ -16,3 +16,6 @@ POST   /upload/:id_album   controllers.Albumes.nuevaFoto(id_album:Int)
 GET    /img/:id            controllers.Albumes.verImagen(id: Int)
 # Map static resources from the /public folder to the /assets URL path
 GET    /assets/*file       controllers.Assets.at(path="/public", file)
+
+
+GET /test controllers.Albumes.test

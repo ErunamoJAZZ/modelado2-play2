@@ -75,10 +75,10 @@ object Pictures {
       ap <- DAO.AlbumsPicturesQuery
       u <- DAO.UsersQuery
       if (p.id === ap.picture
-        && u.name === uname
+        //&& u.name === uname
         && u.id === a.owner
         && ap.album === a.id)
-    } yield p
+    } yield (p,a,u)
 
     play.Logger.info(">> Consulta de todos los privados: " + q.selectStatement)
     q.list

@@ -136,4 +136,11 @@ object Albumes extends Controller {
         Redirect(routes.Login.loginIndex())
       }
   }
+  
+  def test = DBAction{ implicit req =>
+    
+    val asd = model.Pictures.getAllPrivates("a")
+    
+    Ok(asd.toString)
+  }
 }
